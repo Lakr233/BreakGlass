@@ -4,6 +4,8 @@ I've heard you don't like Liquid Glass.
 
 So, let's break it.
 
+https://apps.apple.com/app/id6753628881
+
 ![screenshot](./Resources/Screenshot-1006-110508.png)
 
 ## Comments
@@ -15,6 +17,8 @@ _The assets provided in this repository may not permit any usage without redownl
 _No Liquid Glass was harmed in the making of this repository._
 
 ## App Store Feedback
+
+This feedback is now resolved. 
 
 > Guideline 1.1.6 - Safety - Objectionable Content
 >
