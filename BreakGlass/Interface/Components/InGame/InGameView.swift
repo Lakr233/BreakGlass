@@ -6,8 +6,8 @@
 //
 
 import Combine
+import DisplayLink
 import GlyphixTextFx
-import MSDisplayLink
 import SnapKit
 import Then
 import UIKit
@@ -40,7 +40,7 @@ final class InGameView: UIView {
         $0.numberOfLines = 1
     }
 
-    private let displayLink = DisplayLink()
+    private lazy var displayLink = DisplayLink(context: .view(self))
     private var lastFrameTimestamp: TimeInterval?
     private var viewAlphaCurrent: CGFloat = 0
     private var viewAlphaTarget: CGFloat = 0
@@ -52,14 +52,13 @@ final class InGameView: UIView {
 
     deinit {
         spawnTask?.cancel()
-        displayLink.delegatingObject(nil)
     }
 
     init() {
         super.init(frame: .zero)
         configureView()
         configureAnimationState()
-        displayLink.delegatingObject(self)
+        displayLink.delegate = self
         bindGameState()
         GameStatus.shared.requestGameReadyItems()
     }
@@ -305,26 +304,17 @@ final class InGameView: UIView {
     @objc private func handleTap() {
         SoundEffect.shared.playTap()
     }
+
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        // The link stops ticking outside a window; restart timing on return.
+        lastFrameTimestamp = nil
+    }
 }
 
 extension InGameView: DisplayLinkDelegate {
-    func synchronization(context: DisplayLinkCallbackContext) {
-        if Thread.isMainThread {
-            processDisplayLink(context: context)
-        } else {
-            DispatchQueue.main.async { [weak self] in
-                self?.processDisplayLink(context: context)
-            }
-        }
-    }
-
-    private func processDisplayLink(context: DisplayLinkCallbackContext) {
-        guard window != nil else {
-            lastFrameTimestamp = nil
-            return
-        }
-
-        let timestamp = context.timestamp
+    func displayLink(_: DisplayLink, didUpdate frame: DisplayLinkFrame) {
+        let timestamp = frame.timestamp
         guard let previousTimestamp = lastFrameTimestamp else {
             lastFrameTimestamp = timestamp
             return
@@ -332,7 +322,7 @@ extension InGameView: DisplayLinkDelegate {
 
         var delta = timestamp - previousTimestamp
         if !delta.isFinite || delta <= 0 {
-            delta = max(context.duration, 1.0 / 120.0)
+            delta = max(frame.duration, 1.0 / 120.0)
         }
         lastFrameTimestamp = timestamp
         stepAnimations(deltaTime: delta)

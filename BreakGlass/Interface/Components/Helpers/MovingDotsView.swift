@@ -5,11 +5,11 @@
 //  Created by qaq on 5/10/2025.
 //
 
-import MSDisplayLink
+import DisplayLink
 import UIKit
 
 class MovingDotsView: UIView {
-    private let displayLink = DisplayLink()
+    private lazy var displayLink = DisplayLink(context: .view(self))
     private var dots: [Dot] = []
     private let dotDiameter: CGFloat = 4.0
     private let dotSpacing: CGFloat = 10.0
@@ -36,7 +36,7 @@ class MovingDotsView: UIView {
     }
 
     private func setupDisplayLink() {
-        displayLink.delegatingObject(self)
+        displayLink.delegate = self
     }
 
     private func setupDots() {
@@ -89,29 +89,16 @@ class MovingDotsView: UIView {
         setNeedsDisplay()
     }
 
-    deinit {
-        displayLink.delegatingObject(nil)
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        // The link stops ticking outside a window; restart timing on return.
+        lastFrameTimestamp = nil
     }
 }
 
 extension MovingDotsView: DisplayLinkDelegate {
-    func synchronization(context: DisplayLinkCallbackContext) {
-        if Thread.isMainThread {
-            processDisplayLink(context: context)
-        } else {
-            DispatchQueue.main.async { [weak self] in
-                self?.processDisplayLink(context: context)
-            }
-        }
-    }
-
-    private func processDisplayLink(context: DisplayLinkCallbackContext) {
-        guard window != nil else {
-            lastFrameTimestamp = nil
-            return
-        }
-
-        let timestamp = context.timestamp
+    func displayLink(_: DisplayLink, didUpdate frame: DisplayLinkFrame) {
+        let timestamp = frame.timestamp
         guard let previousTimestamp = lastFrameTimestamp else {
             lastFrameTimestamp = timestamp
             return
@@ -119,7 +106,7 @@ extension MovingDotsView: DisplayLinkDelegate {
 
         var delta = timestamp - previousTimestamp
         if !delta.isFinite || delta <= 0 {
-            delta = max(context.duration, 1.0 / 120.0)
+            delta = max(frame.duration, 1.0 / 120.0)
         }
         lastFrameTimestamp = timestamp
         updateDots(deltaTime: delta)

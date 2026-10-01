@@ -14,6 +14,7 @@
 		50D3F19D2E912B76001AC393 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 50D3F19C2E912B76001AC393 /* SwifterSwift */; };
 		50D3F3752E9133B9001AC393 /* UIEffectKit in Frameworks */ = {isa = PBXBuildFile; productRef = 50D3F3742E9133B9001AC393 /* UIEffectKit */; };
 		50DE0A3A2E9183060073FC35 /* ConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = 50DE0A392E9183060073FC35 /* ConfettiView */; };
+		5A1D15A22F00000000DE1A01 /* DisplayLink in Frameworks */ = {isa = PBXBuildFile; productRef = 5A1D15A12F00000000DE1A01 /* DisplayLink */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 				50D3F1972E91297B001AC393 /* ColorfulX in Frameworks */,
 				50D3F19D2E912B76001AC393 /* SwifterSwift in Frameworks */,
 				50D3F1942E91295C001AC393 /* GlyphixTextFx in Frameworks */,
+				5A1D15A22F00000000DE1A01 /* DisplayLink in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +116,7 @@
 				50D3F19C2E912B76001AC393 /* SwifterSwift */,
 				50D3F3742E9133B9001AC393 /* UIEffectKit */,
 				50DE0A392E9183060073FC35 /* ConfettiView */,
+				5A1D15A12F00000000DE1A01 /* DisplayLink */,
 			);
 			productName = BreakGlass;
 			productReference = 50D3F1392E912294001AC393 /* BreakGlass.app */;
@@ -153,6 +156,7 @@
 				50D3F1982E9129F1001AC393 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				50D3F19B2E912B76001AC393 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 				50DE0A382E9183060073FC35 /* XCRemoteSwiftPackageReference "ConfettiView" */,
+				5A1D15A02F00000000DE1A01 /* XCRemoteSwiftPackageReference "DisplayLink" */,
 			);
 			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
@@ -439,7 +443,7 @@
 			repositoryURL = "https://github.com/Lakr233/ColorfulX";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.0;
+				minimumVersion = 6.1.1;
 			};
 		};
 		50D3F1982E9129F1001AC393 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -464,6 +468,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.3.1;
+			};
+		};
+		5A1D15A02F00000000DE1A01 /* XCRemoteSwiftPackageReference "DisplayLink" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Lakr233/DisplayLink.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -502,6 +514,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 50DE0A382E9183060073FC35 /* XCRemoteSwiftPackageReference "ConfettiView" */;
 			productName = ConfettiView;
+		};
+		5A1D15A12F00000000DE1A01 /* DisplayLink */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A1D15A02F00000000DE1A01 /* XCRemoteSwiftPackageReference "DisplayLink" */;
+			productName = DisplayLink;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

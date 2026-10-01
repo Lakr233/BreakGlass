@@ -1,5 +1,4 @@
 {
-  "originHash" : "25eea3d6e4d4e42ad11c15559d323a148feb717d656f55deb180c135cb6f9fc1",
   "pins" : [
     {
       "identity" : "choreographer",
@@ -15,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Lakr233/ColorfulX",
       "state" : {
-        "revision" : "4b48da803e2e02bdd29c031802d995bf28eea486",
-        "version" : "5.7.0"
+        "revision" : "2f933d3c6be349c5c36084fb644f46988ba1f401",
+        "version" : "6.1.1"
       }
     },
     {
@@ -38,21 +37,21 @@
       }
     },
     {
+      "identity" : "displaylink",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Lakr233/DisplayLink.git",
+      "state" : {
+        "revision" : "110051a86f2f074105c1502301d687c4c9597a1c",
+        "version" : "3.0.0"
+      }
+    },
+    {
       "identity" : "glyphixtextfx",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ktiays/GlyphixTextFx/",
       "state" : {
         "revision" : "e1d0aa71c1849363a1bbef061d3d92f10481e62c",
         "version" : "2.3.6"
-      }
-    },
-    {
-      "identity" : "msdisplaylink",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Lakr233/MSDisplayLink.git",
-      "state" : {
-        "revision" : "ebf5823cb5fc1326639d9a05bc06d16bbe82989f",
-        "version" : "2.0.8"
       }
     },
     {
@@ -110,5 +109,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
